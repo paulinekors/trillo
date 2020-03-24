@@ -1,0 +1,43 @@
+.container {
+    max-width: 120rem;
+    margin: 8rem auto;
+    background-color: var(--color-grey-light-1);
+    box-shadow: var(--shadow-dark);
+
+    min-height: 50rem;
+}
+
+.header {
+    font-size: 1.4rem; //so that it will pass this on to the children
+    height: 7rem;
+    background-color: #fff;
+    border-bottom: var(--color-grey-light-2);
+
+    display: flex;
+    justify-content: space-between; //logo + search + account info
+    align-items: center;
+}
+
+//this is the flex container
+.content {
+    display: flex;
+}
+
+//this is flex item 1
+.sidebar {
+    background-color: var(--color-grey-dark-1);
+    flex: 0 0 18%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; //there are only 2 elements so that's why the text is at the bottom
+}
+
+//this is flex item 2
+.hotel-view {
+    //for testing
+    background-color: pink;
+    height: 80rem;
+    flex: 1;
+    
+
+}
