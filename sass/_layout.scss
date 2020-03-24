@@ -11,7 +11,7 @@
     font-size: 1.4rem; //so that it will pass this on to the children
     height: 7rem;
     background-color: #fff;
-    border-bottom: 1px solid var(--color-grey-light-2);
+    border-bottom: var(--line);
 
     display: flex;
     justify-content: space-between; //logo + search + account info
@@ -35,9 +35,28 @@
 //this is flex item 2
 .hotel-view {
     //for testing
-    background-color: pink;
-    height: 80rem;
+    //background-color: pink;
+    //height: 80rem;
     flex: 1;
-    
+}
 
+.detail {
+    display: flex;
+    padding: 4.5rem;
+    background-color: var(--color-grey-light-1);
+    border-bottom: var(--line);
+}
+
+.description {
+    background-color: #fff;
+    font-size: 1.4rem;
+    box-shadow: var(--shadow-light);
+    padding: 3rem;
+    flex: 0 0 60%;
+    margin-right: 4.5rem; 
+}
+
+.user-reviews {
+    background-color: rebeccapurple;
+    flex: 1; //assign the remaining space to this element
 }
