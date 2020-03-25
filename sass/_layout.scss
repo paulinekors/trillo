@@ -5,6 +5,12 @@
     box-shadow: var(--shadow-dark);
 
     min-height: 50rem;
+
+    @media only screen and (max-width: $bp-largest) {
+        margin: 0;
+        max-width: 100%;
+        width: 100%;
+    }
 }
 
 .header {
@@ -16,17 +22,29 @@
     display: flex;
     justify-content: space-between; //logo + search + account info
     align-items: center;
+
+    @media only screen and (max-width: $bp-smallest) {
+        flex-wrap: wrap; //makes sure it displays below the logo, notifications etc
+        align-content: space-around;
+        height: 11rem;
+    }
 }
 
 //this is the flex container
 .content {
     display: flex;
+
+    @media only screen and (max-width: $bp-medium) {
+        flex-direction: column; //puts nav on top
+    }
 }
 
 //this is flex item 1
 .sidebar {
     background-color: var(--color-grey-dark-1);
+
     flex: 0 0 18%;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between; //there are only 2 elements so that's why the text is at the bottom
@@ -34,7 +52,7 @@
 
 //this is flex item 2
 .hotel-view {
-    //for testing
+    background-color: #fff;
     //background-color: pink;
     //height: 80rem;
     flex: 1;
@@ -46,6 +64,14 @@
     padding: 4.5rem;
     background-color: var(--color-grey-light-1);
     border-bottom: var(--line);
+
+    @media only screen and (max-width: $bp-medium) {
+        padding: 3rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+        flex-direction: column; // to show details below the description
+    }
 }
 
 .description {
@@ -54,6 +80,16 @@
     padding: 3rem;
     flex: 0 0 60%;
     margin-right: 4.5rem; 
+
+    @media only screen and (max-width: $bp-medium) {
+        padding: 2rem;
+        margin-right: 3rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+        margin-right: 0;
+        margin-bottom: 3rem;
+    }
 }
 
 .user-reviews {

@@ -16,6 +16,13 @@
     align-items: center;
     justify-content: center;
 
+    //show search bar below the logo, notifications etc
+    @media only screen and (max-width: $bp-smallest) {
+        order: 1; //makes the search bar the last element > use flex-wrap in layout to actually show it below the rest
+        flex: 0 0 100%; //the width should be higher to make sure it is long enough to show below
+        background-color: var(--color-grey-light-2);
+    }
+
     &__input {
         font-family: inherit;
         font-size: inherit;
@@ -133,11 +140,24 @@
     list-style: none;
     margin-top: 3.5rem;
 
+    @media only screen and (max-width: $bp-medium) {
+        display: flex; //needed for media queries
+        margin: 0;
+    }
+
     &__item {
         position: relative;
 
         &:not(:last-child) {
             margin-bottom: .5rem;
+
+            @media only screen and (max-width: $bp-medium) {
+                flex: 1; //allow items to grow and occupy the same space
+            }
+        }
+
+        @media only screen and (max-width: $bp-medium) {
+            flex: 1; //allow items to grow and occupy the same space
         }
     }
 
@@ -178,6 +198,16 @@
 
         display: flex;
         align-items: center; //to make icons align with text
+
+        @media only screen and (max-width: $bp-medium) {
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        @media only screen and (max-width: $bp-small) {
+            flex-direction: column; //to show the icon above the text
+            padding: 1.5rem .5rem;
+        }
     }
 
     &__icon {
@@ -185,6 +215,13 @@
         height: 1.75rem;
         fill: currentColor; //uses the parent's color
         margin-right: 2rem;
+
+        @media only screen and (max-width: $bp-small) {
+            margin-right: 0;
+            margin-bottom: .7rem;
+            width: 1.5rem;
+            height: 1.5rem;
+        }
     }
 }
 
@@ -196,6 +233,10 @@
     text-align: center;
     padding: 2.5rem;
     color: var(--color-grey-light-4);
+
+    @media only screen and (max-width: $bp-medium) {
+        display: none; //hide legal text
+    }
 }
 
 
@@ -224,6 +265,11 @@
         text-transform: uppercase;
         letter-spacing: 1px;
         padding: 1.5rem 3rem;
+
+        @media only screen and (max-width: $bp-small) {
+            font-size: 1.8rem;
+            padding: 1.25rem 2rem;
+        }
     }
 
     &__stars {
@@ -251,28 +297,39 @@
 
     &__rating {
         background-color: var(--color-primary);
+        color: #fff;
         margin-left: 3rem;
         padding: 0 2.25rem;
-        color: #fff;
         align-self: stretch;
 
         display: flex;
-        flex-direction: column; //to get them aligned on top of each other
+        flex-direction: column; //to get lined up on top of each other
         align-items: center;
         justify-content: center;
+
+        @media only screen and (max-width: $bp-small) {
+            padding: 0 1.5rem;
+        }
     }
 
     &__rating-average {
         font-size: 2.25rem;
         font-weight: 300;
         margin-bottom: -3px;
+
+        @media only screen and (max-width: $bp-small) {
+            font-size: 1.8rem;
+        }
     }
 
     &__rating-count {
         font-size: .8rem;
         text-transform: uppercase;
-    }
 
+        @media only screen and (max-width: $bp-small) {
+            font-size: .5rem;
+        }
+    }
 }
 
 
@@ -391,7 +448,7 @@
         border: 3px solid #fff;
 
         &:not(:last-child) {
-            margin-right: -1.15rem;
+            margin-right: -2rem;
         }
     }
 }
@@ -456,5 +513,76 @@
         font-family: sans-serif;
         line-height: 1; //the default is gigantic
         z-index: 1; //to stop it from overflowing over the text
+    }
+}
+
+//////////////////////////////////////////////////////////
+// CTA text
+.cta {
+    padding: 3.5rem 0;
+    text-align: center;
+
+    @media only screen and (max-width: $bp-medium) {
+        padding: 2.5rem 0;
+    }
+
+    &__book-now {
+        font-size: 2rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        margin-bottom: 2.5rem;
+    }
+}
+
+//////////////////////////////////////////////////////////
+// CTA button
+
+.btn {
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    border-radius: 100px;
+    border:none;
+    background-image: linear-gradient(to right, var(--color-primary-light), var(--color-primary-dark));
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    & > * {
+        transition: all .2s;
+        height: 100%;
+        width: 100%;
+        display: inline-block;
+    }
+
+    &__visible{
+        padding: 2rem 7.5rem;
+    }
+
+    &__invisible{
+        position: absolute;
+        padding: 2rem; //not 7.5rem cause otherwise the text wont fit
+        left: 0;
+        top: -100%; //it moves up just the same height as the element height - position:relative is needed
+    }
+
+    &:hover {
+        background-image: linear-gradient(to left, var(--color-primary-light), var(--color-primary-dark));
+    }
+
+    &:hover &__visible {
+        transform: translateY(100%);
+        //we cant use top cause we didnt use position absolute
+    }
+
+    &:hover &__invisible {
+            top: 0; //this makes the text visble when hovered
+        }
+
+
+    &:focus {
+        outline: none;
+        animation: pulsate 1s infinite;
     }
 }
